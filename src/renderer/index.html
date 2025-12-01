@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';">
+  <title>힙독클럽 아카이버</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">📚</div>
+      <h1>힙독클럽 아카이버</h1>
+      <p class="subtitle">서울야외도서관 활동 기록을 노션으로</p>
+    </header>
+
+    <!-- Step 1: 로그인 -->
+    <section class="card" id="step-login">
+      <div class="step-header">
+        <span class="step-number">1</span>
+        <h2>서울야외도서관 로그인</h2>
+      </div>
+      <div class="step-content">
+        <div id="login-status" class="status status-pending">
+          <span class="status-icon">○</span>
+          <span class="status-text">로그인이 필요합니다</span>
+        </div>
+        <div class="btn-group">
+          <button id="btn-login" class="btn btn-primary">로그인하기</button>
+          <button id="btn-logout" class="btn btn-secondary hidden">로그아웃</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 2: 노션 설정 -->
+    <section class="card" id="step-notion">
+      <div class="step-header">
+        <span class="step-number">2</span>
+        <h2>노션 연결</h2>
+      </div>
+      <div class="step-content">
+        <div class="input-group">
+          <label for="notion-token">프라이빗 API 통합 시크릿</label>
+          <input type="password" id="notion-token" placeholder="ntn_xxxx...">
+          <a href="https://www.notion.so/my-integrations" target="_blank" class="help-link">API 키 생성하기 →</a>
+          <span class="help-text"><a href="https://www.youtube.com/watch?v=ihJiR4Alkbo" target="_blank">💡 가이드 영상 확인하기</a></span>
+        </div>
+        <div class="input-group">
+          <label for="notion-page">저장하려는 페이지 링크</label>
+          <input type="text" id="notion-page" placeholder="https://www.notion.so/... 또는 페이지 ID">
+          <span class="help-text">💡 저장할 페이지 우측 상단 ··· → 연결 → 만든 Integration 추가 → 페이지 링크 복사</span>
+        </div>
+        <button id="btn-save-notion" class="btn btn-secondary">저장</button>
+      </div>
+    </section>
+
+    <!-- Step 3: 내보내기 -->
+    <section class="card" id="step-export">
+      <div class="step-header">
+        <span class="step-number">3</span>
+        <h2>내보내기</h2>
+      </div>
+      <div class="step-content">
+        <div class="export-options">
+          <label class="checkbox-item">
+            <input type="checkbox" id="opt-books" checked>
+            <span>📖 나의서재</span>
+            <small>완독인증, 도서추천</small>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" id="opt-readCertify" checked>
+            <span>📸 독서인증샷</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" id="opt-review" checked>
+            <span>📋 활동후기</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" id="opt-bookCopy" checked>
+            <span>✍️ 필사인증</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" id="opt-freeBoard" checked>
+            <span>💬 자유게시판</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" id="opt-attendance" checked>
+            <span>📅 출석현황</span>
+            <small>4월~12월 월별 출석</small>
+          </label>
+        </div>
+        <button id="btn-export" class="btn btn-primary btn-large" disabled>내보내기 시작</button>
+      </div>
+    </section>
+
+    <!-- 진행 상태 -->
+    <section class="card hidden" id="progress-section">
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <p class="progress-text" id="progress-text">준비 중...</p>
+      </div>
+    </section>
+
+    <footer>
+      <button id="btn-clear-data" class="btn btn-danger btn-small">🗑️ 저장된 정보 삭제</button>
+      <p>Made by <a href="https://github.com/sinam7" target="_blank">sinam7</a> | <a href="mailto:mail@sinam7.com">mail@sinam7.com</a></p>
+      <p class="license">MIT License</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,46 @@
+{
+  "name": "hipdok-archive",
+  "version": "1.0.0",
+  "description": "힙독클럽 노션 아카이버 - 서울야외도서관 활동 기록을 노션으로 내보내기",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win --mac",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "dependencies": {
+    "cheerio": "1.0.0-rc.10"
+  },
+  "build": {
+    "appId": "com.hipdok.archive",
+    "productName": "힙독클럽 아카이버",
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.productivity"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "dmg": {
+      "title": "힙독클럽 아카이버",
+      "contents": [
+        { "x": 130, "y": 220 },
+        { "x": 410, "y": 220, "type": "link", "path": "/Applications" }
+      ]
+    }
+  }
+}
+
