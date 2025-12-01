@@ -1,6 +1,18 @@
 const { net } = require('electron');
 
 /**
+ * Delay helper
+ * @param {number} ms - Milliseconds to wait
+ * @returns {Promise<void>}
+ */
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// Request delay configuration (ms)
+const REQUEST_DELAY = 150;
+
+/**
  * @typedef {Object} HttpClientConfig
  * @property {string} baseUrl - Base URL for requests
  * @property {Object<string, string>} [defaultHeaders] - Default headers for all requests
@@ -36,7 +48,10 @@ function createHttpClient(config) {
    * @param {RequestOptions} [options] - Request options
    * @returns {Promise<HttpResponse>}
    */
-  function request(path, options = {}) {
+  async function request(path, options = {}) {
+    // Add delay before each request to prevent server overload
+    await delay(REQUEST_DELAY);
+
     return new Promise((resolve, reject) => {
       const url = path.startsWith('http') ? path : `${baseUrl}${path}`;
       const method = options.method || 'GET';
@@ -206,6 +221,7 @@ function createNotionClient(token) {
 module.exports = {
   createHttpClient,
   createScraperClient,
-  createNotionClient
+  createNotionClient,
+  delay,
+  REQUEST_DELAY
 };
-
